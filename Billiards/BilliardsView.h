@@ -22,6 +22,7 @@
   BOOL _wasMoving;
 }
 
++ (NSSize)preferredViewSize;
 - (void)newGame;
 
 @end

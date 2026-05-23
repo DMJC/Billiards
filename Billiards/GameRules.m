@@ -16,7 +16,7 @@
 - (void)beginNewRack:(GameState *)state table:(Table *)table {
   [[state balls] removeAllObjects];
 
-  CGFloat r = 10.0;
+  CGFloat r = 16.0;
   NSRect rect = [table playRect];
 
   Ball *cue = [[Ball alloc] initWithNumber:0

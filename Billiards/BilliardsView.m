@@ -13,18 +13,42 @@
 #import "Ball.h"
 #import "Vec2.h"
 
+static const CGFloat BilliardsTableImageWidth = 1438.0;
+static const CGFloat BilliardsTableImageHeight = 889.0;
+static const NSRect BilliardsImagePlayRect = {{95.0, 105.0}, {1249.0, 681.0}};
+
 @implementation BilliardsView
+
++ (NSSize)preferredViewSize {
+  NSImage *image = [NSImage imageNamed:@"billiard_table"];
+  if (image) {
+    return [image size];
+  }
+
+  return NSMakeSize(900, 520);
+}
+
+- (NSRect)playRectForBounds:(NSRect)bounds {
+  CGFloat xScale = NSWidth(bounds) / BilliardsTableImageWidth;
+  CGFloat yScale = NSHeight(bounds) / BilliardsTableImageHeight;
+
+  return NSMakeRect(NSMinX(bounds) + NSMinX(BilliardsImagePlayRect) * xScale,
+                    NSMinY(bounds) + NSMinY(BilliardsImagePlayRect) * yScale,
+                    NSWidth(BilliardsImagePlayRect) * xScale,
+                    NSHeight(BilliardsImagePlayRect) * yScale);
+}
 
 - (id)initWithFrame:(NSRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    NSRect play = NSInsetRect([self bounds], 60, 45);
+    _tableImage = [NSImage imageNamed:@"billiard_table"];
+
+    NSRect play = [self playRectForBounds:[self bounds]];
 
     _state = [[GameState alloc] init];
     _table = [[Table alloc] initWithRect:play];
     _physics = [[PhysicsEngine alloc] init];
     _rules = [[GameRules alloc] init];
-    _tableImage = [NSImage imageNamed:@"billiard_table"];
 
     [_rules beginNewRack:_state table:_table];
 
@@ -120,7 +144,7 @@
 }
 
 - (void)drawTable {
-  NSRect outer = NSInsetRect([self bounds], 25, 25);
+  NSRect outer = [self bounds];
 
   if (_tableImage) {
     [_tableImage drawInRect:outer

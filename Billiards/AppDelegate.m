@@ -13,19 +13,20 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
   [self setupMainMenu];
 
-  NSRect frame = NSMakeRect(100, 100, 900, 520);
+  NSSize viewSize = [BilliardsView preferredViewSize];
+  NSRect frame = NSMakeRect(100, 100, viewSize.width, viewSize.height);
 
   _window = [[NSWindow alloc] initWithContentRect:frame
                                        styleMask:(NSTitledWindowMask |
                                                   NSClosableWindowMask |
-                                                  NSMiniaturizableWindowMask |
-                                                  NSResizableWindowMask)
+                                                  NSMiniaturizableWindowMask)
                                          backing:NSBackingStoreBuffered
                                            defer:NO];
 
   [_window setTitle:@"Billiards"];
+  [[_window standardWindowButton:NSWindowZoomButton] setEnabled:NO];
 
-  _view = [[BilliardsView alloc] initWithFrame:NSMakeRect(0, 0, 900, 520)];
+  _view = [[BilliardsView alloc] initWithFrame:NSMakeRect(0, 0, viewSize.width, viewSize.height)];
   [_window setContentView:_view];
   [_window makeKeyAndOrderFront:nil];
 }
