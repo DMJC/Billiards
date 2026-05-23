@@ -17,5 +17,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification;
 - (void)newGame:(id)sender;
+- (void)setupMainMenu;
 
 @end

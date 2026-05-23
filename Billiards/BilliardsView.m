@@ -165,6 +165,34 @@
 
     [[NSBezierPath bezierPathWithOvalInRect:ballRect] fill];
 
+    if (![b isCueBall]) {
+      CGFloat numberRadius = r * 0.52;
+      NSRect numberRect = NSMakeRect(p.x - numberRadius,
+                                     p.y - numberRadius,
+                                     numberRadius * 2,
+                                     numberRadius * 2);
+
+      [[NSColor whiteColor] set];
+      [[NSBezierPath bezierPathWithOvalInRect:numberRect] fill];
+
+      NSString *number = [NSString stringWithFormat:@"%d", [b number]];
+      NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+      [paragraphStyle setAlignment:NSTextAlignmentCenter];
+
+      NSDictionary *attributes = @{
+        NSFontAttributeName: [NSFont boldSystemFontOfSize:r * 0.78],
+        NSForegroundColorAttributeName: [NSColor blackColor],
+        NSParagraphStyleAttributeName: paragraphStyle
+      };
+
+      NSSize textSize = [number sizeWithAttributes:attributes];
+      NSRect textRect = NSMakeRect(p.x - numberRadius,
+                                   p.y - (textSize.height / 2.0),
+                                   numberRadius * 2,
+                                   textSize.height);
+      [number drawInRect:textRect withAttributes:attributes];
+    }
+
     [[NSColor blackColor] set];
     [[NSBezierPath bezierPathWithOvalInRect:ballRect] stroke];
   }
