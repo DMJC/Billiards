@@ -149,7 +149,7 @@ static const NSRect BilliardsImagePlayRect = {{95.0, 105.0}, {1249.0, 681.0}};
   if (_tableImage) {
     [_tableImage drawInRect:outer
                    fromRect:NSZeroRect
-                  operation:NSCompositingOperationSourceOver
+                  operation:NSCompositeSourceOver
                    fraction:1.0
              respectFlipped:YES
                       hints:nil];
