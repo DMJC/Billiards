@@ -17,6 +17,7 @@
   Table *_table;
   PhysicsEngine *_physics;
   GameRules *_rules;
+  NSImage *_tableImage;
   NSTimer *_timer;
   BOOL _wasMoving;
 }

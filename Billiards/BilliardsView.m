@@ -24,6 +24,7 @@
     _table = [[Table alloc] initWithRect:play];
     _physics = [[PhysicsEngine alloc] init];
     _rules = [[GameRules alloc] init];
+    _tableImage = [NSImage imageNamed:@"billiard_table"];
 
     [_rules beginNewRack:_state table:_table];
 
@@ -120,27 +121,37 @@
 
 - (void)drawTable {
   NSRect outer = NSInsetRect([self bounds], 25, 25);
-  NSRect play = [_table playRect];
 
-  [[NSColor colorWithCalibratedRed:0.22 green:0.12 blue:0.05 alpha:1.0] set];
-  NSBezierPath *wood = [NSBezierPath bezierPathWithRoundedRect:outer
-                                                       xRadius:18
-                                                       yRadius:18];
-  [wood fill];
+  if (_tableImage) {
+    [_tableImage drawInRect:outer
+                   fromRect:NSZeroRect
+                  operation:NSCompositingOperationSourceOver
+                   fraction:1.0
+             respectFlipped:YES
+                      hints:nil];
+  } else {
+    NSRect play = [_table playRect];
 
-  [[NSColor colorWithCalibratedRed:0.02 green:0.28 blue:0.10 alpha:1.0] set];
-  NSBezierPath *felt = [NSBezierPath bezierPathWithRoundedRect:play
-                                                       xRadius:8
-                                                       yRadius:8];
-  [felt fill];
+    [[NSColor colorWithCalibratedRed:0.22 green:0.12 blue:0.05 alpha:1.0] set];
+    NSBezierPath *wood = [NSBezierPath bezierPathWithRoundedRect:outer
+                                                         xRadius:18
+                                                         yRadius:18];
+    [wood fill];
 
-  [[NSColor blackColor] set];
-  for (NSValue *value in [_table pockets]) {
-    NSPoint p = [value pointValue];
-    CGFloat pr = [_table pocketRadius];
+    [[NSColor colorWithCalibratedRed:0.02 green:0.28 blue:0.10 alpha:1.0] set];
+    NSBezierPath *felt = [NSBezierPath bezierPathWithRoundedRect:play
+                                                         xRadius:8
+                                                         yRadius:8];
+    [felt fill];
 
-    NSRect pocketRect = NSMakeRect(p.x - pr, p.y - pr, pr * 2, pr * 2);
-    [[NSBezierPath bezierPathWithOvalInRect:pocketRect] fill];
+    [[NSColor blackColor] set];
+    for (NSValue *value in [_table pockets]) {
+      NSPoint p = [value pointValue];
+      CGFloat pr = [_table pocketRadius];
+
+      NSRect pocketRect = NSMakeRect(p.x - pr, p.y - pr, pr * 2, pr * 2);
+      [[NSBezierPath bezierPathWithOvalInRect:pocketRect] fill];
+    }
   }
 }
 
