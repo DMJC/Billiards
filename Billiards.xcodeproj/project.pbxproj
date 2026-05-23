@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		14BDAF802FC2398E001F687A /* libm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BDAF7F2FC2397E001F687A /* libm.tbd */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		14BDAF302FC214EF001F687A /* Billiards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billiards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14BDAF7F2FC2397E001F687A /* libm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libm.tbd; path = usr/lib/libm.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BDAF802FC2398E001F687A /* libm.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +39,7 @@
 			isa = PBXGroup;
 			children = (
 				14BDAF322FC214EF001F687A /* Billiards */,
+				14BDAF7E2FC2397E001F687A /* Frameworks */,
 				14BDAF312FC214EF001F687A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +50,14 @@
 				14BDAF302FC214EF001F687A /* Billiards.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		14BDAF7E2FC2397E001F687A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14BDAF7F2FC2397E001F687A /* libm.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,15 +268,15 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lm",
-				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lm",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.blacklotus.Billiards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -284,15 +299,15 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lm",
-				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lm",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.blacklotus.Billiards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
