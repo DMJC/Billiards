@@ -5,11 +5,19 @@
 //  Created by Gregory Casamento on 5/23/26.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
+#import "AppDelegate.h"
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
+int main(int argc, const char **argv) {
+    @autoreleasepool
+    {
+        NSApplication *app = [NSApplication sharedApplication];
+
+        AppDelegate *controller = [[AppDelegate alloc] init];
+        [app setDelegate: controller];
+
+        [app run];
     }
-    return NSApplicationMain(argc, argv);
+
+    return 0;
 }

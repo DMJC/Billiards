@@ -5,10 +5,17 @@
 //  Created by Gregory Casamento on 5/23/26.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@class BilliardsView;
 
+@interface AppDelegate : NSObject {
+  NSWindow *_window;
+  BilliardsView *_view;
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification;
+- (void)newGame:(id)sender;
 
 @end
-

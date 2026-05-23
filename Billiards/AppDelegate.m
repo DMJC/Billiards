@@ -6,27 +6,38 @@
 //
 
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
-
-@property (strong) IBOutlet NSWindow *window;
-@end
+#import "BilliardsView.h"
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  NSRect frame = NSMakeRect(100, 100, 900, 520);
+
+  _window = [[NSWindow alloc] initWithContentRect:frame
+                                       styleMask:(NSTitledWindowMask |
+                                                  NSClosableWindowMask |
+                                                  NSMiniaturizableWindowMask |
+                                                  NSResizableWindowMask)
+                                         backing:NSBackingStoreBuffered
+                                           defer:NO];
+
+  [_window setTitle:@"Billiards"];
+
+  _view = [[BilliardsView alloc] initWithFrame:NSMakeRect(0, 0, 900, 520)];
+  [_window setContentView:_view];
+  [_window makeKeyAndOrderFront:nil];
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+- (void)newGame:(id)sender {
+  [_view newGame];
 }
 
-
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
-    return YES;
+/*
+- (void)dealloc {
+  [_view release];
+  [_window release];
+  [super dealloc];
 }
-
+*/
 
 @end
