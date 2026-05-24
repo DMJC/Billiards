@@ -214,8 +214,13 @@ static const NSRect BilliardsImagePlayRect = {{95.0, 105.0}, {1249.0, 681.0}};
       NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
       [paragraphStyle setAlignment:NSTextAlignmentCenter];
 
+      CGFloat numberFontSize = r * 0.78;
+#ifdef GNUSTEP
+      numberFontSize = r * 0.68;
+#endif
+
       NSDictionary *attributes = @{
-        NSFontAttributeName: [NSFont boldSystemFontOfSize:r * 0.78],
+        NSFontAttributeName: [NSFont boldSystemFontOfSize:numberFontSize],
         NSForegroundColorAttributeName: [NSColor blackColor],
         NSParagraphStyleAttributeName: paragraphStyle
       };

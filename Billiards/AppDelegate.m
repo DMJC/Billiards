@@ -32,6 +32,35 @@
 }
 
 - (void)setupMainMenu {
+#ifdef GNUSTEP
+  NSMenu *mainMenu = [[NSMenu alloc] initWithTitle:@"Billiards"];
+  [mainMenu setTitle:@"Billiards"];
+
+  NSMenuItem *appMenuItem = [[NSMenuItem alloc] initWithTitle:@"Billiards"
+                                                       action:nil
+                                                keyEquivalent:@""];
+  [mainMenu addItem:appMenuItem];
+
+  NSMenu *appMenu = [[NSMenu alloc] initWithTitle:@"Billiards"];
+  [appMenu setTitle:@"Billiards"];
+
+  NSMenuItem *newGameItem = [[NSMenuItem alloc] initWithTitle:@"New Game"
+                                                       action:@selector(newGame:)
+                                                keyEquivalent:@"n"];
+  [newGameItem setTarget:self];
+  [appMenu addItem:newGameItem];
+
+  [appMenu addItem:[NSMenuItem separatorItem]];
+
+  NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit Billiards"
+                                                    action:@selector(terminate:)
+                                             keyEquivalent:@"q"];
+  [quitItem setTarget:NSApp];
+  [appMenu addItem:quitItem];
+
+  [mainMenu setSubmenu:appMenu forItem:appMenuItem];
+  [NSApp setMainMenu:mainMenu];
+#else
   NSMenu *mainMenu = [[NSMenu alloc] initWithTitle:@""];
 
   NSMenuItem *appMenuItem = [[NSMenuItem alloc] initWithTitle:@""
@@ -57,6 +86,7 @@
 
   [mainMenu setSubmenu:appMenu forItem:appMenuItem];
   [NSApp setMainMenu:mainMenu];
+#endif
 }
 
 - (void)newGame:(id)sender {
