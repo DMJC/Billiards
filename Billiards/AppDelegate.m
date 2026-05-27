@@ -2,11 +2,10 @@
 //  AppDelegate.m
 //  Billiards
 //
-//  Created by Gregory Casamento on 5/23/26.
-//
 
 #import "AppDelegate.h"
 #import "BilliardsView.h"
+#import "NewGameController.h"
 
 @implementation AppDelegate
 
@@ -14,14 +13,14 @@
   [self setupMainMenu];
 
   NSSize viewSize = [BilliardsView preferredViewSize];
-  NSRect frame = NSMakeRect(100, 100, viewSize.width, viewSize.height);
+  NSRect frame    = NSMakeRect(100, 100, viewSize.width, viewSize.height);
 
   _window = [[NSWindow alloc] initWithContentRect:frame
-                                       styleMask:(NSTitledWindowMask |
-                                                  NSClosableWindowMask |
-                                                  NSMiniaturizableWindowMask)
-                                         backing:NSBackingStoreBuffered
-                                           defer:NO];
+                                        styleMask:(NSTitledWindowMask    |
+                                                   NSClosableWindowMask  |
+                                                   NSMiniaturizableWindowMask)
+                                          backing:NSBackingStoreBuffered
+                                            defer:NO];
 
   [_window setTitle:@"Billiards"];
   [[_window standardWindowButton:NSWindowZoomButton] setEnabled:NO];
@@ -29,6 +28,9 @@
   _view = [[BilliardsView alloc] initWithFrame:NSMakeRect(0, 0, viewSize.width, viewSize.height)];
   [_window setContentView:_view];
   [_window makeKeyAndOrderFront:nil];
+
+  // Show game-selection dialog on launch
+  [self newGame:nil];
 }
 
 - (void)setupMainMenu {
@@ -90,15 +92,9 @@
 }
 
 - (void)newGame:(id)sender {
-  [_view newGame];
+  NewGameController *controller = [[NewGameController alloc] init];
+  GameType type = [controller runModal];
+  [_view newGameWithType:type];
 }
-
-/*
-- (void)dealloc {
-  [_view release];
-  [_window release];
-  [super dealloc];
-}
-*/
 
 @end
