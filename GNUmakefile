@@ -11,10 +11,15 @@ Billiards_OBJC_FILES = \
 	Billiards/GameState.m \
 	Billiards/NewGameController.m \
 	Billiards/PhysicsEngine.m \
+	Billiards/PreferencesController.m \
 	Billiards/Table.m
 
 Billiards_RESOURCE_FILES = \
-	Billiards/billiard_table.png
+	Billiards/billiard_table.png \
+	Billiards/billiard_table_black.png \
+	Billiards/billiard_table_blue.png \
+	Billiards/billiard_table_red.png \
+	Billiards/billiard_table_white.png
 
 Billiards_OBJCFLAGS = -I./Billiards
 
