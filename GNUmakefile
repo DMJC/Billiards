@@ -1,6 +1,7 @@
 include $(GNUSTEP_MAKEFILES)/common.make
 
 APP_NAME = Billiards
+Billiards_APPLICATION_ICON = AppIcon-128.png
 
 Billiards_OBJC_FILES = \
 	Billiards/main.m \
@@ -15,6 +16,7 @@ Billiards_OBJC_FILES = \
 	Billiards/Table.m
 
 Billiards_RESOURCE_FILES = \
+	Billiards/Assets.xcassets/AppIcon.appiconset/AppIcon-128.png \
 	Billiards/billiard_table.png \
 	Billiards/billiard_table_black.png \
 	Billiards/billiard_table_blue.png \
